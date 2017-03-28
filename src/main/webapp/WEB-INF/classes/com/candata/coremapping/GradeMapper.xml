@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.candata.dao.GradeMapper" >
+  <resultMap id="BaseResultMap" type="com.candata.coremodel.Grade" >
+    <id column="gid" property="gid" jdbcType="INTEGER" />
+    <result column="batchNo" property="batchno" jdbcType="INTEGER" />
+    <result column="ranking" property="ranking" jdbcType="INTEGER" />
+    <result column="opusid" property="opusid" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gid, batchNo, ranking, opusid, pid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_grade
+    where gid = #{gid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_grade
+    where gid = #{gid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.candata.coremodel.Grade" >
+    insert into t_grade (gid, batchNo, ranking, 
+      opusid, pid)
+    values (#{gid,jdbcType=INTEGER}, #{batchno,jdbcType=INTEGER}, #{ranking,jdbcType=INTEGER}, 
+      #{opusid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.candata.coremodel.Grade" >
+    insert into t_grade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gid != null" >
+        gid,
+      </if>
+      <if test="batchno != null" >
+        batchNo,
+      </if>
+      <if test="ranking != null" >
+        ranking,
+      </if>
+      <if test="opusid != null" >
+        opusid,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gid != null" >
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="batchno != null" >
+        #{batchno,jdbcType=INTEGER},
+      </if>
+      <if test="ranking != null" >
+        #{ranking,jdbcType=INTEGER},
+      </if>
+      <if test="opusid != null" >
+        #{opusid,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.candata.coremodel.Grade" >
+    update t_grade
+    <set >
+      <if test="batchno != null" >
+        batchNo = #{batchno,jdbcType=INTEGER},
+      </if>
+      <if test="ranking != null" >
+        ranking = #{ranking,jdbcType=INTEGER},
+      </if>
+      <if test="opusid != null" >
+        opusid = #{opusid,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.candata.coremodel.Grade" >
+    update t_grade
+    set batchNo = #{batchno,jdbcType=INTEGER},
+      ranking = #{ranking,jdbcType=INTEGER},
+      opusid = #{opusid,jdbcType=INTEGER},
+      pid = #{pid,jdbcType=INTEGER}
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+</mapper>

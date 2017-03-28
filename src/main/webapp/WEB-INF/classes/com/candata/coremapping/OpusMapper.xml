@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.candata.dao.OpusMapper" >
+  <resultMap id="BaseResultMap" type="com.candata.coremodel.Opus" >
+    <id column="opusid" property="opusid" jdbcType="INTEGER" />
+    <result column="stock" property="stock" jdbcType="VARCHAR" />
+    <result column="sccode" property="sccode" jdbcType="INTEGER" />
+    <result column="hit" property="hit" jdbcType="INTEGER" />
+    <result column="more" property="more" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    opusid, stock, sccode, hit, more
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_opus
+    where opusid = #{opusid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_opus
+    where opusid = #{opusid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.candata.coremodel.Opus" >
+    insert into t_opus (opusid, stock, sccode, 
+      hit, more)
+    values (#{opusid,jdbcType=INTEGER}, #{stock,jdbcType=VARCHAR}, #{sccode,jdbcType=INTEGER}, 
+      #{hit,jdbcType=INTEGER}, #{more,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.candata.coremodel.Opus" >
+    insert into t_opus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="opusid != null" >
+        opusid,
+      </if>
+      <if test="stock != null" >
+        stock,
+      </if>
+      <if test="sccode != null" >
+        sccode,
+      </if>
+      <if test="hit != null" >
+        hit,
+      </if>
+      <if test="more != null" >
+        more,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="opusid != null" >
+        #{opusid,jdbcType=INTEGER},
+      </if>
+      <if test="stock != null" >
+        #{stock,jdbcType=VARCHAR},
+      </if>
+      <if test="sccode != null" >
+        #{sccode,jdbcType=INTEGER},
+      </if>
+      <if test="hit != null" >
+        #{hit,jdbcType=INTEGER},
+      </if>
+      <if test="more != null" >
+        #{more,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.candata.coremodel.Opus" >
+    update t_opus
+    <set >
+      <if test="stock != null" >
+        stock = #{stock,jdbcType=VARCHAR},
+      </if>
+      <if test="sccode != null" >
+        sccode = #{sccode,jdbcType=INTEGER},
+      </if>
+      <if test="hit != null" >
+        hit = #{hit,jdbcType=INTEGER},
+      </if>
+      <if test="more != null" >
+        more = #{more,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where opusid = #{opusid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.candata.coremodel.Opus" >
+    update t_opus
+    set stock = #{stock,jdbcType=VARCHAR},
+      sccode = #{sccode,jdbcType=INTEGER},
+      hit = #{hit,jdbcType=INTEGER},
+      more = #{more,jdbcType=VARCHAR}
+    where opusid = #{opusid,jdbcType=INTEGER}
+  </update>
+</mapper>

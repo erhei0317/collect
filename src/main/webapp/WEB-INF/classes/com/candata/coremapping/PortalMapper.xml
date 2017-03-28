@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.candata.dao.PortalMapper" >
+  <resultMap id="BaseResultMap" type="com.candata.coremodel.Portal" >
+    <id column="tid" property="tid" jdbcType="INTEGER" />
+    <result column="theme" property="theme" jdbcType="VARCHAR" />
+    <result column="begintime" property="begintime" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="linkedcode" property="linkedcode" jdbcType="VARCHAR" />
+    <result column="read" property="read" jdbcType="INTEGER" />
+    <result column="gid" property="gid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tid, theme, begintime, endtime, link, linkedcode, read, gid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_portal
+    where tid = #{tid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_portal
+    where tid = #{tid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.candata.coremodel.Portal" >
+    insert into t_portal (tid, theme, begintime, 
+      endtime, link, linkedcode, 
+      read, gid)
+    values (#{tid,jdbcType=INTEGER}, #{theme,jdbcType=VARCHAR}, #{begintime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{link,jdbcType=VARCHAR}, #{linkedcode,jdbcType=VARCHAR}, 
+      #{read,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.candata.coremodel.Portal" >
+    insert into t_portal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="theme != null" >
+        theme,
+      </if>
+      <if test="begintime != null" >
+        begintime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="linkedcode != null" >
+        linkedcode,
+      </if>
+      <if test="read != null" >
+        read,
+      </if>
+      <if test="gid != null" >
+        gid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="theme != null" >
+        #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="linkedcode != null" >
+        #{linkedcode,jdbcType=VARCHAR},
+      </if>
+      <if test="read != null" >
+        #{read,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null" >
+        #{gid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.candata.coremodel.Portal" >
+    update t_portal
+    <set >
+      <if test="theme != null" >
+        theme = #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        begintime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="linkedcode != null" >
+        linkedcode = #{linkedcode,jdbcType=VARCHAR},
+      </if>
+      <if test="read != null" >
+        read = #{read,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null" >
+        gid = #{gid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.candata.coremodel.Portal" >
+    update t_portal
+    set theme = #{theme,jdbcType=VARCHAR},
+      begintime = #{begintime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      link = #{link,jdbcType=VARCHAR},
+      linkedcode = #{linkedcode,jdbcType=VARCHAR},
+      read = #{read,jdbcType=INTEGER},
+      gid = #{gid,jdbcType=INTEGER}
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+</mapper>
